@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane fx:id="mainPane" maxHeight="400.0" maxWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="rectRunning" arcHeight="5.0" arcWidth="5.0" fill="#ff231f" height="25.0" layoutX="561.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+      <Label fx:id="labelRunning" layoutX="392.0" layoutY="12.0" prefHeight="25.0" prefWidth="157.0" text="Label" textFill="WHITE" />
+      <TableView fx:id="tableView" layoutX="14.0" layoutY="46.0" prefHeight="304.0" prefWidth="572.0">
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <Button fx:id="buttonConnect" disable="true" layoutX="174.0" layoutY="12.0" mnemonicParsing="false" text="Connect Server" />
+      <Button fx:id="buttonRefresh" disable="true" layoutX="282.0" layoutY="12.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Refresh" />
+      <TextField fx:id="name" layoutX="13.0" layoutY="12.0" />
+      <Button fx:id="createGame" layoutX="15.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Create game" />
+      <Button fx:id="removeGame" disable="true" layoutX="122.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Remove Game" />
+      <TextField fx:id="ipAddr" layoutX="271.0" layoutY="360.0" />
+      <Button fx:id="switchL" layoutX="430.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="SwitchServer" />
+   </children>
+</AnchorPane>

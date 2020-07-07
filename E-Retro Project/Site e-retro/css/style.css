@@ -1,0 +1,47 @@
+.formulaire{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    font-size: 22px;
+    display: block;
+    width: 150px;
+    text-align: center;
+    color: red;
+}
+
+.erreur{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 22px;
+    color: red;
+}
+
+.ok{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 22px;
+    color: green;
+}
+
+.modif{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    text-align: center;
+    font-size: 22px;
+    color: #c69500;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 100px);
+}
+
+.hide{
+    visibility: hidden;
+}
