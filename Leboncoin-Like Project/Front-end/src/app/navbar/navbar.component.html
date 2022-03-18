@@ -1,0 +1,59 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark purple">
+  <!-- Navbar brand -->
+  <mdb-navbar-brand
+    ><a class="navbar-brand text-white">MBDS</a></mdb-navbar-brand
+  >
+
+  <!-- Collapsible content -->
+  <links>
+    <!-- Tabs of navbar -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link waves-light" href="/dashboard" mdbWavesEffect
+          >Accueil</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" href="/annonces" mdbWavesEffect
+          >Annonces</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link waves-light" href="/users" mdbWavesEffect
+          >Utilisateurs</a
+        >
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <!-- If connected = My account + Logout -->
+    <ul *ngIf="isConnected" class="navbar-nav ml-auto">
+      <li class="nav-item dropdown" dropdown>
+        <a
+          dropdownToggle
+          mdbWavesEffect
+          type="button"
+          class="nav-link dropdown-toggle waves-light"
+          mdbWavesEffect
+        >
+          <mdb-icon fas icon="user"></mdb-icon>Profil<span class="caret"></span
+        ></a>
+        <div
+          *dropdownMenu
+          class="dropdown-menu dropdown-menu-right dropdown dropdown-primary"
+          role="menu"
+        >
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#"
+            >My account</a
+          >
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#"
+            >Log out</a
+          >
+        </div>
+      </li>
+    </ul>
+  </links>
+  <!-- Collapsible content -->
+</mdb-navbar>
+<!--/.Navbar-->

@@ -1,0 +1,6 @@
+import td_1.Illustration
+
+model {
+    List<Illustration> illustrations = [];
+}
+json tmpl.illustration(illustrations);

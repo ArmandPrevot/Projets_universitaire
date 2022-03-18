@@ -1,0 +1,6 @@
+import td_1.User
+
+model {
+    List<User> users = [];
+}
+json tmpl.user(users);

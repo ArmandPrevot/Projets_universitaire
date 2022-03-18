@@ -1,0 +1,6 @@
+import td_1.Annonce
+
+model {
+    List<Annonce> annonces = [];
+}
+json tmpl.userAnnonce(annonces);

@@ -1,0 +1,9 @@
+import td_1.Illustration
+
+model {
+    Illustration illustration;
+}
+json {
+    filename illustration.filename;
+    id illustration.id;
+}

@@ -1,0 +1,63 @@
+<!-- Default form register -->
+<div class="row justify-content-center text-center m-5">
+  <div class="col-6">
+    <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" class="md-form">
+      <p class="h4 mb-4">Se connecter</p>
+
+      <!-- Pseudo -->
+      <input
+        mdbInput
+        type="text"
+        id="userI"
+        class="form-control mb-4"
+        placeholder="Nom d'utilisateur"
+        formControlName="userI"
+        required
+      />
+
+      <div
+        *ngIf="
+          this.getUsername?.invalid &&
+          (getUsername?.dirty || getUsername?.touched)
+        "
+        class="alert alert-danger mt-4"
+      >
+        <div *ngIf="this.getUsername?.errors?.required">
+          Veuillez renseignez votre nom d'utilisateur
+        </div>
+      </div>
+
+      <!-- Password -->
+      <input
+        type="password"
+        id="passI"
+        class="form-control mb-4"
+        placeholder="Mot de passe"
+        formControlName="passI"
+        aria-describedby="defaultRegisterFormPasswordHelpBlock"
+      />
+
+      <div
+        *ngIf="this.getPwd?.invalid && (getPwd?.dirty || getPwd?.touched)"
+        class="alert alert-danger mt-4"
+      >
+        <div *ngIf="this.getPwd?.errors?.required">
+          Veuillez renseignez votre mot de passe
+        </div>
+      </div>
+
+      <!-- Sign up button -->
+      <button mdbBtn color="info" class="my-2" type="submit">
+        Se connecter
+      </button>
+
+      <hr />
+      <!-- Terms of service -->
+      <p>
+        En cliquant sur <em>Se connecter</em> vous acceptez nos conditions
+        d'utilisations.
+      </p>
+    </form>
+    <!-- Default form register -->
+  </div>
+</div>

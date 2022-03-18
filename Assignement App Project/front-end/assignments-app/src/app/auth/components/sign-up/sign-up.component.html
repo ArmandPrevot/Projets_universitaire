@@ -1,0 +1,64 @@
+<div class="row justify-content-center align-items-center h-100">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5 md-form">
+    <div *ngIf="getUrl?.value" class="mb-3">
+      <img src="{{ getUrl?.value }}" width="120px" height="120px" />
+    </div>
+
+    <p class="h4 mb-4">S'inscrire</p>
+
+    <!-- Name -->
+    <input id="name_I" type="text" class="form-control mb-4" formControlName="name_I" required placeholder="Nom" />
+
+    <!-- Input validation errors handling -->
+    <div *ngIf="getName?.invalid && (getName?.dirty || getName?.touched)" class="alert alert-danger">
+      <div *ngIf="getName?.errors?.['required']">L'e-mail est requis.</div>
+    </div>
+
+    <!-- Email -->
+    <input id="email_I" type="email" class="form-control mb-4" formControlName="email_I" required placeholder="Email" />
+
+    <!-- Input validation errors handling -->
+    <div *ngIf="getMail?.invalid && (getMail?.dirty || getMail?.touched)" class="alert alert-danger">
+      <div *ngIf="getMail?.errors?.['required']">L'e-mail est requis.</div>
+      <div *ngIf="getMail?.errors?.['pattern']">L'e-mail est au mauvais format.</div>
+    </div>
+
+    <!-- Password -->
+    <input mdbInput id="pwd_I" type="password" class="form-control mb-4" formControlName="pwd_I" placeholder="Mot de passe" />
+    <!-- Input validation errors handling -->
+    <div *ngIf="getPwd?.invalid && (getPwd?.dirty || getPwd?.touched)" class="alert alert-danger">
+      <div *ngIf="getPwd?.errors?.['required']">Le mot de passe est requis</div>
+      <div *ngIf="getPwd?.errors?.['pattern']">Le mot de passe mauvais format.</div>
+    </div>
+
+    <!-- Avatar URL -->
+    <input mdbInput id="url_I" type="text" class="form-control mb-4" formControlName="url_I" placeholder="URL de l'avatar (optionel)" />
+
+    <!-- Role -->
+    <select class="custom-select mb-2" (change)="changeRole($event)" formControlName="role_I">
+      <option value="" disabled>Choissisez un rôle</option>
+      <option *ngFor="let role of roles" [ngValue]="role">{{ role }}</option>
+    </select>
+
+    <!-- Input validation errors handling -->
+    <div *ngIf="getRole?.invalid && (getRole?.dirty || getRole?.touched)" class="alert alert-danger mt-2">
+      <div *ngIf="getRole?.errors?.['required']">Un rôle est nécessaire</div>
+    </div>
+
+    <div *ngIf="getRole?.value === '3: Professeur'" class="col m-2">
+      <input mdbInput id="nomMatiere_I" type="text" class="form-control mb-4" formControlName="nomMatiere_I" placeholder="Nom de la matière" />
+      <input mdbInput id="descMatiere_i" type="text" class="form-control mb-4" formControlName="descMatiere_i" placeholder="Description" />
+      <input mdbInput id="photoMatiere_i" type="text" class="form-control mb-4" formControlName="photoMatiere_i" placeholder="Photo" />
+      <img *ngIf="getUrlPhoto?.value" src="{{ getUrlPhoto?.value }}" width="64px" height="64px" />
+    </div>
+
+    <!-- Sign in button -->
+    <button [disabled]="signupForm.invalid" class="btn btn-primary my-4" type="submit">Valider</button>
+
+    <!-- Register -->
+    <p class="mt-2">
+      Vous avez déjà un compte ?
+      <a routerLink="/auth/login" href="">Connectez-vous</a>
+    </p>
+  </form>
+</div>

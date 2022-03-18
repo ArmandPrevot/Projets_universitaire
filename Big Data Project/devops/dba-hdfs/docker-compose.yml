@@ -1,0 +1,88 @@
+version: '3'
+
+services:
+
+  namenode-dba:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode-dba
+    volumes:
+      - ./datas/hdfs/namenode-dba:/hadoop/dfs/name
+      - ./hadoop/upload_files:/upload_files
+    environment:
+      - CLUSTER_NAME=hive
+    env_file:
+      - ./hadoop/hadoop-hive.env
+    ports:
+      - 9870:9870
+      - 9000:9000
+
+  datanode-dba:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    volumes:
+      - ./datas/hdfs/datanode-dba:/hadoop/dfs/data
+    env_file:
+      - ./hadoop/hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode-dba:9870"
+    depends_on:
+      - namenode-dba
+    ports:
+      - 9866:9866
+      - 9864:9864
+
+  postgres-data-dba:
+    image: postgres:latest
+    container_name: postgres-data-dba
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./datas/postgre:/var/lib/postgresql/data
+      # copy the sql script to create tables
+      - ./postgre-data/sql/:/docker-entrypoint-initdb.d/
+
+  spark:
+    build: ../spark-cluster/spark
+    container_name: spark-dba
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    ports:
+      - 8081:8080
+      - 7077:7077
+    volumes:
+      - ../spark-cluster/spark/jars:/spark_jobs
+    depends_on:
+      - datanode-dba
+      - namenode-dba
+      - postgres-data-dba
+
+  spark-worker:
+    build: ../spark-cluster/spark
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_WORKER_MEMORY=4G
+      - SPARK_WORKER_CORES=4
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ../spark-cluster/spark/jars:/spark_jobs
+    depends_on:
+      - spark
+      - datanode-dba
+      - namenode-dba
+      - postgres-data-dba
+  

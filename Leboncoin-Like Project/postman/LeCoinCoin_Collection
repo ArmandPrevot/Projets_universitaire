@@ -1,0 +1,871 @@
+{
+	"info": {
+		"_postman_id": "cdb3802b-0485-452a-afbf-f19e2b536328",
+		"name": "Test Lecoincoin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "Annonce",
+					"item": [
+						{
+							"name": "annonce/owner/id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUDBcL2JRQlJcL0RvbW9RR29CQ2FRT2RDbmRLcWVDTVJQXC9Xb0ZNUUUyelVJbnFZalwvTXdmbk8zSjBoV1ZBbUdCaW9vRWhJXC9RcDhrM2JwQjZqYW9TdHp0NHAzaHVDVUJYR1RcL2U3bjM3XC9ueXl1b0dBMHpzV1pjR0Q4VldjeWxiMUxOWld3d3pEUzNIVDh6cUNPME9lSmREbXpTQkc2T1Z3SXZnQktQTEl3RjIyeVBWUVdUY1hXMXRZMmhyYlUxVENzZDN6SnVhcGJndnRJN1wvaDEzcURUK0oxQlFlXC85S01MZ09veXdNVlNadFhjbkZkc28xUnVzd1Vzd0NGZTY0MFhoSU55Z3RaOEwwUXdkUnNwYkFLSUJobHRrdFJhb2NqWVZuTjJZenkwVzFnYllXd0pPVUdVUHU3aVZwV0dmZDNUdWJraExzd2dHVTI2bEhoN3A3NWFDKzRcL0hubFJDVW1pdHBwcG95VVJIZjVFNmMrTHVUcHo5T3ZuYWJKUURxNVBYRDN4VHo1M1BRXC9iYng5MFZldEJkYW1PaXpYc0JxN1pUY2pCYk1IelE2NVo4WGEyZm5WMGNmQjBqWklkNCtmaDlUczdmTmRlWlZrakxOck9yYkVkSHVsOTB6a2M4OVRON2JRc2R2OENRVlNIK1V0QmpkU1JURUZMZXNsZWoxYldIb1wvV3F3K0dsMllXV3A3bDRyenVjYlVuMmFoM2JiOGdORnV6cis4XC9uN3ljdGZ4TEFNbFQwbU1xVE9Sd3BRUFV0YXFBOHZ6eWVIdlwvdyt6aFAwXC91WnJxNys0bEJFREFBQT0iLCJzdWIiOiJ1c2VyMCIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaXNzIjoiU3ByaW5nIFNlY3VyaXR5IFJFU1QgR3JhaWxzIFBsdWdpbiIsImV4cCI6MTYzMTg3NTQ2OCwiaWF0IjoxNjMxODcxODY4fQ.ZwIkXdcWv3_LscpPS3phv4O1iEmeApKhFeWTttXCeoM",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/owner/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"owner",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "annonce/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR /annonce/owner/<bad id>",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/owner/dnhkzqd",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"owner",
+										"dnhkzqd"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR /annonce/owner/<not found id>",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/owner/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"owner",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "user/id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR /user/<bad id>",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/leet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"leet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR /user/<not found id>",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Illustration",
+					"item": [
+						{
+							"name": "illustration/id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/illustration/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"illustration",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR illustration/<bad id>",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/illustration/leet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"illustration",
+										"leet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR illustration/<not found id>",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/illustration/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"illustration",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Annonces",
+					"item": [
+						{
+							"name": "/annocnes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonces",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonces"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "/users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Illustrations",
+					"item": [
+						{
+							"name": "/ilustrations",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/illustrations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"illustrations"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "user/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"user0\",\r\n    \"annonces\": [\r\n        {\r\n            \"id\": 5\r\n        }, \r\n        {\r\n            \"id\": 1\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR user/<bad id>",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/leet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"leet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR user/<not found id>",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Annonce",
+					"item": [
+						{
+							"name": "annonce/id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"title_totoj2\",\r\n    \"description\": \"lkklklkl\",\r\n    \"id\": 10,\r\n    \"price\": 1032.357,\r\n    \"dateCreated\": \"2021-08-20T08:42:13Z\",\r\n    \"lastUpdated\": \"2021-10-20T08:42:13Z\",\r\n    \"images\": [\r\n        {\r\n            \"filename\": \"filename_1df\",\r\n            \"id\": 1\r\n        },\r\n        {\r\n            \"filename\": \"filename_0\",\r\n            \"id\": 3\r\n        },\r\n        {\r\n            \"filename\": \"filename_2\",\r\n            \"id\": 2\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR /annonce/<bad id>",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/leet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"leet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR /annonce/<not found id>",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "Illustration",
+					"item": [
+						{
+							"name": "illustration/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/illustration/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"illustration",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR illustration/<bad id>",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/illustration/leet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"illustration",
+										"leet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR illustration/<not found id>",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/illustration/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"illustration",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Annonce",
+					"item": [
+						{
+							"name": "annonce/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR annonce/<bad id>",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/leet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"leet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR annonce/<not found id>",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "user/id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR user/<bad id>",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/leet",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"leet"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ERROR user/<not found id>",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user/1337",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"1337"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Annonce",
+					"item": [
+						{
+							"name": "/annonce",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"nouvelle annonce\",\r\n    \"description\": \"description de l'annonce\",\r\n    \"price\": 1337.12,\r\n    \"authorId\": 1,\r\n    \"images\": [{\r\n        \"filename\": \"filename_0\",\r\n        \"id\": 74\r\n    }]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/annonce",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"annonce"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "/user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"newusers\",\r\n    \"password\": \"passwd1234\",\r\n    \"role\": \"ROLE_ADMIN\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/user",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "LOGIN",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user0\",\r\n    \"password\": \"passwd1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUDBcL2JRQlJcL0RvbW9RR29CQ2FRT2RDbmRLcWVDTVJQXC9Xb0ZNUUUyelVJbnFZalwvTXdmbk8zSjBoV1ZBbUdCaW9vRWhJXC9RcDhrM2JwQjZqYW9TdHp0NHAzaHVDVUJYR1RcL2U3bjM3XC9ueXl1b0dBMHpzV1pjR0Q4VldjeWxiMUxOWld3d3pEUzNIVDh6cUNPME9lSmREbXpTQkc2T1Z3SXZnQktQTEl3RjIyeVBWUVdUY1hXMXRZMmhyYlUxVENzZDN6SnVhcGJndnRJN1wvaDEzcURUK0oxQlFlXC85S01MZ09veXdNVlNadFhjbkZkc28xUnVzd1Vzd0NGZTY0MFhoSU55Z3RaOEwwUXdkUnNwYkFLSUJobHRrdFJhb2NqWVZuTjJZenkwVzFnYllXd0pPVUdVUHU3aVZwV0dmZDNUdWJraExzd2dHVTI2bEhoN3A3NWFDKzRcL0hubFJDVW1pdHBwcG95VVJIZjVFNmMrTHVUcHo5T3ZuYWJKUURxNVBYRDN4VHo1M1BRXC9iYng5MFZldEJkYW1PaXpYc0JxN1pUY2pCYk1IelE2NVo4WGEyZm5WMGNmQjBqWklkNCtmaDlUczdmTmRlWlZrakxOck9yYkVkSHVsOTB6a2M4OVRON2JRc2R2OENRVlNIK1V0QmpkU1JURUZMZXNsZWoxYldIb1wvV3F3K0dsMllXV3A3bDRyenVjYlVuMmFoM2JiOGdORnV6cis4XC9uN3ljdGZ4TEFNbFQwbU1xVE9Sd3BRUFV0YXFBOHZ6eWVIdlwvdyt6aFAwXC91WnJxNys0bEJFREFBQT0iLCJzdWIiOiJ1c2VyMCIsInJvbGVzIjpbIlJPTEVfQURNSU4iXSwiaXNzIjoiU3ByaW5nIFNlY3VyaXR5IFJFU1QgR3JhaWxzIFBsdWdpbiIsImV4cCI6MTYzMzI3MzQyNywiaWF0IjoxNjMzMjY5ODI3fQ.X319e1bWsQQT_WBhlh8hTOou8NQj8tgKA8xbsvS6rLs",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

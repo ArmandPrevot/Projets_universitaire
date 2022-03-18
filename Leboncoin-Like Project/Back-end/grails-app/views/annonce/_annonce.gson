@@ -1,0 +1,14 @@
+import td_1.Annonce
+
+model {
+    Annonce annonce;
+}
+json {
+    title annonce.title;
+    description annonce.description;
+    id annonce.id;
+    price annonce.price;
+    dateCreated annonce.dateCreated;
+    lastUpdated annonce.lastUpdated;
+    images g.render(template: "/illustration/illustrations", model:[illustrations:annonce.images.toList()]);
+}

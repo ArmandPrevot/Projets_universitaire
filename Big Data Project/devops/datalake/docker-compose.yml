@@ -1,0 +1,206 @@
+version: '3'
+
+services:
+
+  namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    volumes:
+      - ./datas/hive/hdfs/namenode:/hadoop/dfs/name
+    environment:
+      - CLUSTER_NAME=hive
+    env_file:
+      - ./hive/hadoop-hive.env
+    ports:
+      - 9870:9870
+      - 9000:9000
+
+  datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    volumes:
+      - ./datas/hive/hdfs/datanode:/hadoop/dfs/data
+    env_file:
+      - ./hive/hadoop-hive.env
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+    depends_on:
+      - namenode
+    ports:
+      - 9866:9866
+      - 9864:9864
+
+  hive-server:
+    build: ./hive
+    container_name: hive-server
+    env_file:
+      - ./hive/hadoop-hive.env
+    environment:
+      HIVE_CORE_CONF_javax_jdo_option_ConnectionURL: "jdbc:postgresql://hive-metastore/metastore"
+      SERVICE_PRECONDITION: "hive-metastore:9083"
+    depends_on:
+      - hive-metastore
+    ports:
+      - "10000:10000"
+
+  hive-metastore:
+    image: bde2020/hive:2.3.2-postgresql-metastore
+    container_name: hive-metastore
+    env_file:
+      - ./hive/hadoop-hive.env
+    command: /opt/hive/bin/hive --service metastore
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870 hive-metastore-postgresql:5432"
+    depends_on:
+      - hive-metastore-postgresql
+    ports:
+      - "9083:9083"
+
+  hive-metastore-postgresql:
+    image: bde2020/hive-metastore-postgresql:2.3.0
+    container_name: hive-metastore-postgresql
+    volumes:
+      - ./datas/hive/metastore-postgresql/postgresql/data:/var/lib/postgresql/data
+    depends_on:
+      - namenode
+      - datanode
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./datas/mongo/mongodata:/data/db
+    command: --bind_ip_all --auth
+  
+  cassandra:
+    image: docker.io/bitnami/cassandra:latest
+    container_name: cassandra
+    ports:
+      - '7000:7000'
+      - '9042:9042'
+    volumes:
+      - ./datas/cassandra/cassandradata:/bitnami
+      - ./cassandra/init_cassandra:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: [ "CMD", "/opt/bitnami/cassandra/bin/cqlsh", "-u cassandra", "-p cassandra" ,"-e \"describe keyspaces\"" ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    environment:
+      - CASSANDRA_SEEDS=cassandra
+      - CASSANDRA_PASSWORD_SEEDER=yes
+      - CASSANDRA_PASSWORD=cassandra
+
+  kafka:
+    image: landoop/fast-data-dev:latest
+    container_name: kafka
+    ports:
+     # - 3181:3181
+      - 3040:3040
+     # - 7081:7081
+     # - 7082:7082
+     # - 7083:7083
+      - 9092:9092
+    environment:
+      ADV_HOST: 127.0.0.1
+      #CONNECTORS: jdbc,elastic,hbase
+      RUNTESTS: 0
+      SAMPLEDATA: 0
+     # KAFKA_AUTO_CREATE_TOPICS_ENABLE: false
+      KAFKA_CONNECT_DEBEZIUM_POSTGRES_VERSION: 1.6.0.Final
+      BROKER_PORT: 9092
+      REST_PORT: 7082
+      CONNECT_PORT: 7083
+      ZK_PORT: 3181
+      WEB_PORT: 3040
+      REGISTRY_PORT: 8081
+      POST_SETUP_FILE: /init_kafka/init.sh
+    restart: always
+    volumes:
+      - ./kafka/init_kafka:/init_kafka
+      - ./kafka/connectors/:/connectors/
+    depends_on:
+      - mongodb
+      - cassandra
+      - namenode
+      - hive-metastore
+      - hive-metastore-postgresql
+
+  postgres-data:
+    image: postgres:latest
+    container_name: postgres-data
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./datas/postgre:/var/lib/postgresql/data
+      # copy the sql script to create tables
+      - ./postgre-data/sql/:/docker-entrypoint-initdb.d/
+
+  presto:
+    image: ahanaio/prestodb-sandbox:latest
+    container_name: presto
+    ports:
+      - "8080:8080"
+      #- "8443:8443"
+    volumes:
+      - ./presto/master:/opt/presto-server/etc
+      - ./presto/hiveConfig:/hiveConfig
+    depends_on:
+      - mongodb
+      - cassandra
+      - namenode
+      - hive-metastore
+      - hive-metastore-postgresql
+      - postgres-data
+  
+  spark:
+    build: ../spark-cluster/spark
+    container_name: spark
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    ports:
+      - 8081:8080
+      - 7077:7077
+    volumes:
+      - ../spark-cluster/spark/jars:/spark_jobs
+    depends_on:
+      - presto 
+      - postgres-data 
+
+  spark-worker:
+    build: ../spark-cluster/spark
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_WORKER_MEMORY=4G
+      - SPARK_WORKER_CORES=4
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ../spark-cluster/spark/jars:/spark_jobs
+    depends_on:
+      - spark
+      - presto 
+      - postgres-data 
+  

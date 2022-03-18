@@ -1,0 +1,118 @@
+<div class="container">
+  <h3 class="text-center font-weight-bold text-uppercase py-4">
+    Liste des utilisateurs
+  </h3>
+  <div class="row mt-2 mb-5">
+    <span class="float-right mb-3 mr-2"
+      ><a (click)="add()" class="text-success"
+        ><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a
+    ></span>
+    <table
+      mdbTable
+      #tableEl="mdbTable"
+      [stickyHeader]="true"
+      [hover]="true"
+      [striped]="true"
+      class="z-depth-1"
+    >
+      <thead class="sticky-top">
+        <tr>
+          <th
+            *ngFor="let head of headElements; let i = index"
+            [mdbTableSort]="elements"
+            [sortBy]="headElements[i]"
+            scope="col"
+          >
+            {{ head | titlecase }}
+            <mdb-icon fas icon="sort"></mdb-icon>
+          </th>
+        </tr>
+      </thead>
+      <tbody #row>
+        <tr *ngFor="let el of elements; let i = index">
+          <th
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+            scope="row"
+          >
+            {{ el.id }}
+          </th>
+          <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+          >
+            {{ el.username }}
+          </td>
+          <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+          >
+            {{ el.role }}
+          </td>
+          <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+          >
+            {{ el.annonces }}
+          </td>
+          <td
+            *ngIf="
+              i + 1 >= mdbTablePagination.firstItemIndex &&
+              i < mdbTablePagination.lastItemIndex
+            "
+          >
+            <button
+              mdbBtn
+              color="warning"
+              size="sm"
+              mdbWavesEffect
+              (click)="editRow(el)"
+            >
+              Edit
+            </button>
+            <button
+              mdbBtn
+              color="danger"
+              size="sm"
+              mdbWavesEffect
+              (click)="removeRow(el)"
+            >
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot class="grey lighten-5 w-100">
+        <tr>
+          <td colspan="5">
+            <mdb-table-pagination
+              [tableEl]="tableEl"
+              paginationAlign=""
+              [searchDataSource]="elements"
+            ></mdb-table-pagination>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<ng-template #loader>
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

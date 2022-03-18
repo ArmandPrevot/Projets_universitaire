@@ -1,0 +1,7 @@
+.homePage {
+  ::ng-deep .mat-paginator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,108 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close pull-right"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+    >
+      <span aria-hidden="true">×</span>
+    </button>
+    <h4 class="modal-title w-100" id="myModalLabel">
+      Edition de l'utilisateur: {{ editableRow.username }}
+    </h4>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="form">
+      <div class="md-form">
+        <input
+          id="id"
+          type="text"
+          class="form-control grey-text"
+          formControlName="id"
+          mdbInput
+        />
+        <label for="id">ID</label>
+      </div>
+      <div class="md-form">
+        <input
+          id="first"
+          type="text"
+          class="form-control"
+          formControlName="username"
+          mdbInput
+          [mdbValidate]="true"
+          [validateSuccess]="false"
+        />
+        <label for="first">Nom</label>
+        <mdb-error
+          *ngIf="username?.invalid && (username?.dirty || username?.touched)"
+          >Vous devez saisir un nom</mdb-error
+        >
+      </div>
+      <!-- <div class="md-form"> -->
+      <!-- <input
+          id="last"
+          type="text"
+          class="form-control"
+          formControlName="description"
+          mdbInput
+          [mdbValidate]="true"
+          [validateSuccess]="false"
+        /> -->
+      <!--
+        <select class="browser-default custom-select" formControlName="role">
+          <option selected>Choisir un rôle</option>
+          <option value="1">Admin</option>
+          <option value="2">Modérateur</option>
+          <option value="3">Standard</option>
+        </select>
+
+        <mdb-error *ngIf="role?.invalid && (role?.dirty || role?.touched)"
+          >Vous devez saisir un role</mdb-error
+        > -->
+      <!-- </div> -->
+      <!-- <div class="md-form">
+        <input
+          id="handle"
+          type="text"
+          class="form-control"
+          formControlName="price"
+          mdbInput
+          [mdbValidate]="true"
+          [validateSuccess]="false"
+        />
+        <label for="handle">Prix</label>
+        <mdb-error *ngIf="price?.invalid && (price?.dirty || price?.touched)"
+          >Vous devez saisir un prix</mdb-error
+        >
+      </div>
+      <div class="md-form">
+        <input type="file" multiple (change)="selectFiles($event)" />
+      </div> -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      mdbBtn
+      color="secondary"
+      class="waves-light"
+      aria-label="Close"
+      (click)="modalRef.hide()"
+      mdbWavesEffect
+    >
+      Fermer
+    </button>
+    <button
+      type="button"
+      mdbBtn
+      color="primary"
+      class="relative waves-light"
+      mdbWavesEffect
+      (click)="editRow()"
+    >
+      Enregistrer
+    </button>
+  </div>
+</div>

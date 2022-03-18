@@ -1,0 +1,34 @@
+<div class="row justify-content-center align-items-center h-100">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="text-center border border-light p-5 md-form">
+    <p class="h4 mb-4">Se connecter</p>
+
+    <!-- Email -->
+    <input id="email_I" type="email" class="form-control mb-4" formControlName="email_I" required placeholder="Email" />
+
+    <!-- Input validation errors handling -->
+    <div *ngIf="getMail?.invalid && (getMail?.dirty || getMail?.touched)" class="alert alert-danger">
+      <div *ngIf="getMail?.errors?.['required']">L'e-mail est requis.</div>
+      <div *ngIf="getMail?.errors?.['pattern']">L'e-mail est au mauvais format.</div>
+    </div>
+
+    <!-- Password -->
+    <input mdbInput id="pwd_I" type="password" class="form-control mb-4" formControlName="pwd_I" placeholder="Mot de passe" />
+
+    <!-- Input validation errors handling -->
+    <div *ngIf="getPwd?.invalid && (getPwd?.dirty || getPwd?.touched)" class="alert alert-danger">
+      <div *ngIf="getPwd?.errors?.['required']">Le mot de passe est requis</div>
+    </div>
+
+    <!-- Sign in button -->
+    <button [disabled]="!loginForm.valid" class="btn btn-primary my-4" type="submit">Valider</button>
+
+    <!-- Login denied message -->
+    <div *ngIf="!areLogsCorrect" class="alert alert-danger">Identifiants invalides</div>
+
+    <!-- Register -->
+    <p class="mt-2">
+      Vous n'avez pas de compte ?
+      <a routerLink="/auth/sign-up">Inscrivez-vous</a>
+    </p>
+  </form>
+</div>

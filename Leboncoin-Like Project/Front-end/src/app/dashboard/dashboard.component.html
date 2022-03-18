@@ -1,0 +1,16 @@
+<div *ngIf="!isLoading; else loader">
+  <app-cards [userNb]="userNb" [annonceNb]="annonceNb"></app-cards>
+  <app-charts [userNb]="userNb" [annonceNb]="annonceNb"></app-charts>
+</div>
+
+<ng-template #loader>
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <div class="d-flex justify-content-center mt-5">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

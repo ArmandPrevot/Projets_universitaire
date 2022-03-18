@@ -1,0 +1,49 @@
+<div class="row mt-3 mb-3">
+  <div class="col-md-6 col-sm-7 col-xs-7 mt-2">
+    <mdb-card>
+      <div class="card-header">Nombre d'annonces par utilisateurs</div>
+      <mdb-card-body>
+        <div style="display: block">
+          <canvas
+            width="200"
+            height="100"
+            mdbChart
+            [chartType]="chartLineType"
+            [datasets]="chartLineDatasets"
+            [labels]="chartLineLabels"
+            [colors]="chartLineColors"
+            [options]="chartLineOptions"
+            [legend]="true"
+          >
+          </canvas>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+
+  <div class="col-md-6 col-sm-7 col-xs-7 mt-2">
+    <mdb-card>
+      <div class="card-header">
+        Nombre total des annonces et des utilisateurs
+      </div>
+      <mdb-card-body>
+        <div style="display: block">
+          <canvas
+            mdbChart
+            width="200"
+            height="100"
+            [chartType]="chartPieType"
+            [datasets]="chartPieDatasets"
+            [labels]="chartPieLabels"
+            [colors]="chartPieColors"
+            [options]="chartPieOptions"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          >
+          </canvas>
+        </div>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+import td_1.Annonce
+
+model {
+    Annonce annonce;
+}
+json {
+    id annonce.id;
+}

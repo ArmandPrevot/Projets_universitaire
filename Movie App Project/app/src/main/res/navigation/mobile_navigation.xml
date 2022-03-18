@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.gmail.eamosse.imdb.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
+            app:destination="@id/navigation_home_second" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_home_second"
+        android:name="com.gmail.eamosse.imdb.ui.home.HomeSecondFragment"
+        android:label="@string/home_second"
+        tools:layout="@layout/fragment_home_second">
+
+        <argument
+            android:name="myArg"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_HomeSecondFragment_to_MovieAboutFragment"
+            app:destination="@id/navigation_movie_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.gmail.eamosse.imdb.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/dashBoardToMovieLike"
+            app:destination="@id/navigation_movie_about" />
+        <action
+            android:id="@+id/dashBoardToMovieTrends"
+            app:destination="@id/navigation_trendings" />
+        <action
+            android:id="@+id/navigation_playing2"
+            app:destination="@id/navigation_playing" />
+        <action
+            android:id="@+id/dashboardToPopular"
+            app:destination="@id/navigation_popular" />
+        <action
+            android:id="@+id/dashToTopRated"
+            app:destination="@id/navigation_toprated" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.gmail.eamosse.imdb.ui.notifications.NotificationsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_movie_about"
+        android:name="com.gmail.eamosse.imdb.ui.home.MovieAboutFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_movie_about">
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_trendings"
+        android:name="com.gmail.eamosse.imdb.ui.home.TrendingFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_trending">
+        <action
+            android:id="@+id/navigationmovie"
+            app:destination="@id/navigation_movie_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_playing"
+        android:name="com.gmail.eamosse.imdb.ui.home.PlayingFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_trending">
+        <action
+            android:id="@+id/playingToAbout"
+            app:destination="@id/navigation_movie_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_popular"
+        android:name="com.gmail.eamosse.imdb.ui.home.PopularFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_trending">
+        <action
+            android:id="@+id/popularToMovieAbout"
+            app:destination="@id/navigation_movie_about" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_toprated"
+        android:name="com.gmail.eamosse.imdb.ui.home.TopRatedFragment"
+        android:label="Movie"
+        tools:layout="@layout/fragment_trending">
+        <action
+            android:id="@+id/topRatedToMovieAbout"
+            app:destination="@id/navigation_movie_about" />
+    </fragment>
+
+</navigation>

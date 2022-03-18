@@ -1,0 +1,46 @@
+<div class="row justify-content-center align-items-center h-100">
+  <div class="card col-5 p-0">
+    <div class="card-header row m-0 p-0">
+      <div class="col-9 pt-2 align-self-center">
+        <h2>Créer un assignement</h2>
+      </div>
+
+      <div class="text-right p-0 m-0" *ngIf="getMatiere?.value" class="col-3 m-0 p-0">
+        <img width="100%" height="100%" src="{{ this.currentInfos.matiere_img }}" />
+      </div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit()" class="text-center">
+        <!-- Titre -->
+        <input id="title_I" type="text" class="form-control mb-2" formControlName="title_I" required placeholder="Titre" />
+
+        <!-- Input validation errors handling -->
+        <div *ngIf="getTitle?.invalid && (getTitle?.dirty || getTitle?.touched)" class="alert alert-danger">
+          <div *ngIf="getTitle?.errors?.['required']">Le titre est requis.</div>
+        </div>
+
+        <!-- Matiere -->
+        <select class="custom-select mb-2" (change)="changeMatiere($event)" formControlName="matiere_I">
+          <option value="" disabled>Choissisez une matière</option>
+          <option *ngFor="let formInfo of formInfos">{{ formInfo.matiere_nom }} - {{ formInfo.prof_name }}</option>
+        </select>
+        <!-- Input validation errors handling -->
+        <div *ngIf="getMatiere?.invalid && (getMatiere?.dirty || getMatiere?.touched)" class="alert alert-danger mt-2">
+          <div *ngIf="getMatiere?.errors?.['required']">La matière est requise</div>
+        </div>
+        <!-- Input validation errors handling -->
+
+        <!-- Desc -->
+        <textarea id="description_I" type="text" class="form-control mb-4" formControlName="description_I" required placeholder="Description"></textarea>
+
+        <!-- Input validation errors handling -->
+        <div *ngIf="getDesc?.invalid && (getDesc?.dirty || getDesc?.touched)" class="alert alert-danger">
+          <div *ngIf="getDesc?.errors?.['required']">La description est requise</div>
+        </div>
+
+        <!-- Sign in button -->
+        <button [disabled]="!createForm.valid" class="btn btn-primary my-4" type="submit">Valider</button>
+      </form>
+    </div>
+  </div>
+</div>

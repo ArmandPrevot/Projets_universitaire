@@ -1,0 +1,65 @@
+<div class="row justify-content-center align-items-center h-100">
+  <div class="card col-5 p-0">
+    <div class="card-header row m-0 p-0">
+      <div class="col-9 pt-2 align-self-center">
+        <h2>Editer un assignement</h2>
+      </div>
+
+      <div class="text-right p-0 m-0" *ngIf="matiere_I?.value" class="col-3 m-0 p-0">
+        <img width="100%" height="100%" src="{{ this.currentInfos.matiere_img }}" />
+      </div>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit()" class="text-center">
+        <!-- Titre -->
+        <input id="title_I" type="text" class="form-control mb-2" formControlName="title_I" required [readOnly]="isProf" />
+
+        <!-- Input validation errors handling -->
+        <div *ngIf="title_I?.invalid && (title_I?.dirty || title_I?.touched)" class="alert alert-danger">
+          <div *ngIf="title_I?.errors?.['required']">Le titre est requis.</div>
+        </div>
+
+        <!-- Password -->
+        <select class="custom-select mb-2" (change)="changeMatiere($event)" formControlName="matiere_I">
+          <!-- <option value="" disabled>Choissisez une matière</option> -->
+          <option [ngValue]="formInfo.matiere_nom" [disabled]="isProf" *ngFor="let formInfo of formInfos">
+            {{ formInfo.matiere_nom }} - {{ formInfo.prof_name }}
+          </option>
+        </select>
+        <!-- Input validation errors handling -->
+        <div *ngIf="matiere_I?.invalid && (matiere_I?.dirty || matiere_I?.touched)" class="alert alert-danger mt-2">
+          <div *ngIf="matiere_I?.errors?.['required']">La matière est requise</div>
+        </div>
+        <!-- Input validation errors handling -->
+
+        <!-- Titre -->
+        <textarea
+          id="description_I"
+          type="text"
+          class="form-control mb-2"
+          formControlName="description_I"
+          [readOnly]="isProf"
+          placeholder="Description"
+        ></textarea>
+
+        <!-- Input validation errors handling -->
+        <div *ngIf="description_I?.invalid && (description_I?.dirty || description_I?.touched)" class="alert alert-danger">
+          <div *ngIf="description_I?.errors?.['required']">La description est requise</div>
+        </div>
+
+        <!-- Titre -->
+        <textarea id="comments_I" type="text" class="form-control mb-2" formControlName="comments_I" required placeholder="Commentaires"></textarea>
+
+        <input id="grade_I" type="number" class="form-control mb-2" formControlName="grade_I" required placeholder="Note" />
+
+        <div *ngIf="this.grade_I?.value" class="mt-2">
+          <mat-slide-toggle formControlName="reviewed_I" checked="reviewed_I.value" color="primary">{{
+            reviewed_I?.value ? 'Rendu' : 'Non-Rendu'
+          }}</mat-slide-toggle>
+        </div>
+        <!-- Sign in button -->
+        <button class="btn btn-primary my-4" type="submit">Valider</button>
+      </form>
+    </div>
+  </div>
+</div>

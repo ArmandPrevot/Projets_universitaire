@@ -1,0 +1,11 @@
+import td_1.User
+
+model {
+    User user;
+}
+json {
+    id user.id;
+    username user.username;
+    role user.getAuthorities()*.getAuthority();
+    annonces g.render(template: "/annonce/userAnnonces", model:[annonces:user.annonces.toList()]);
+}

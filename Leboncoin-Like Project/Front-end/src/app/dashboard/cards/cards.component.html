@@ -1,0 +1,82 @@
+<div class="row mt-3">
+  <div class="col-md-6 col-sm-7 col-xs-7 mt-2">
+    <mdb-card class="cascading-admin-card">
+      <div class="admin-up">
+        <mdb-icon fas icon="users" class="primary-color"></mdb-icon>
+        <div class="data">
+          <p>Utilisateurs</p>
+          <h4>
+            <strong>{{ userNb }}</strong>
+          </h4>
+        </div>
+      </div>
+
+      <mdb-card-body>
+        <div class="progress">
+          <div
+            class="progress-bar bg-primary"
+            role="progressbar"
+            [attr.aria-valuenow]="userNb"
+            [style.width]="(userNb / 100) * 100 + '%'"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="card-text">{{ userNb }} utilisateurs inscrits</p>
+
+        <button
+          type="button"
+          mdbBtn
+          color="primary"
+          class="float-right"
+          size="sm"
+          [routerLink]="['/users']"
+          mdbWavesEffect
+        >
+          <span class="pr-2">Détails</span>
+          <mdb-icon fas icon="angle-right my-auto"></mdb-icon>
+        </button>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+
+  <div class="col-md-6 col-sm-7 col-xs-7 mt-2">
+    <mdb-card class="cascading-admin-card">
+      <div class="admin-up">
+        <mdb-icon fas icon="images" class="warning-color"></mdb-icon>
+        <div class="data">
+          <p>Annonces</p>
+          <h4>
+            <strong>{{ annonceNb }}</strong>
+          </h4>
+        </div>
+      </div>
+
+      <mdb-card-body>
+        <div class="progress">
+          <div
+            class="progress-bar bg-warning"
+            role="progressbar"
+            [style.width]="(annonceNb / 100) * 100 + '%'"
+            [attr.aria-valuenow]="annonceNb"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="card-text">{{ annonceNb }} annonces déposées</p>
+        <button
+          type="button"
+          mdbBtn
+          color="warning"
+          class="float-right z-depth-0"
+          size="sm"
+          [routerLink]="['/annonces']"
+          mdbWavesEffect
+        >
+          <span class="pr-2">Détails</span>
+          <mdb-icon fas icon="angle-right my-auto"></mdb-icon>
+        </button>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>

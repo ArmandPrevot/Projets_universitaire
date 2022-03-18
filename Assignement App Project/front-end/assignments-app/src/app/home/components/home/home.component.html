@@ -1,0 +1,57 @@
+<div class="row justify-content-center align-items-center p-4 homePage text-center">
+  <div class="col-7">
+    <h2>Bonjour {{ username }}, voici vos rendus</h2>
+  </div>
+  <div class="col-7">
+    <mat-paginator
+      class="justify-content-center"
+      (page)="changePageInput($event)"
+      [length]="count"
+      [pageSize]="step"
+      [pageSizeOptions]="[5, 10, 25, 50, 100]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div
+    class="col-6 border-right p-3"
+    cdkDropList
+    #notReviewedList="cdkDropList"
+    cdkDropListSortingDisabled
+    [cdkDropListData]="assignementCardListNotReviewed"
+    [cdkDropListConnectedTo]="[reviewedList]"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h3 class="text-center m-4">Non-rendu</h3>
+    <app-card
+      *ngFor="let assignement of assignementCardListNotReviewed"
+      [assignementCard]="assignement"
+      cdkDrag
+      [ngStyle]="{ cursor: isDragDisabled ? '' : 'grab' }"
+      [cdkDragDisabled]="isDragDisabled || (!assignement.note && assignement.note != 0)"
+    ></app-card>
+  </div>
+
+  <div
+    class="col-6 border-left p-3"
+    cdkDropList
+    #reviewedList="cdkDropList"
+    cdkDropListSortingDisabled
+    [cdkDropListData]="assignementCardListReviewed"
+    [cdkDropListConnectedTo]="[notReviewedList]"
+    (cdkDropListDropped)="drop($event)"
+    [cdkDropListDisabled]=""
+  >
+    <h3 class="text-center m-4">Rendu</h3>
+    <app-card
+      *ngFor="let assignement of assignementCardListReviewed"
+      [assignementCard]="assignement"
+      cdkDrag
+      [cdkDragDisabled]="isDragDisabled"
+      [ngStyle]="{ cursor: isDragDisabled ? '' : 'grab' }"
+    ></app-card>
+  </div>
+</div>
